@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<form method="post">
+    <fieldset>
+    <legend>Order</legend>
+        <table>
+            <tr>
+                <td>Order type</td>
+                <td>
+                    <select id="order_type" name="order_type">
+                        <option value="buy">Buy</option>
+                        <option value="sell">Sell</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>What</td>
+                <td>
+                    <select id="what" name="what">
+                        <option value="BTC">BTC</option>
+                        <option value="LTC">LTC</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Amount</td>
+                <td>
+                    <input type="text" id="amount" name="amount" />
+                </td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>
+                    <input type="text" id="price" name="price" />
+                </td>
+            </tr>
+            <tr>
+                <td>For</td>
+                <td>
+                    <select id="for" name="for">
+                        <option value="EUR">EUR</option>
+                        <option value="USD">USD</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>
+                    <input type="text" id="total" name="total" />
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</form>
+{% endblock %}
