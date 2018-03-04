@@ -25,7 +25,8 @@ def order(request):
         )
         order.save()
 
-        try_limit_order(order)
+        if order.id:
+            try_limit_order(order)
 
     return render(request, 'order.html')
 
