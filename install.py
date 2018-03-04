@@ -24,9 +24,9 @@ admin.save()
 
 account = Account(user=test1, usd=1000, eur=2000, ltc=10, btc=20, created_by=test1)
 account.save()
-account = Account(user=test2, usd=1000, eur=60000, ltc=10, btc=20, created_by=test2)
+account = Account(user=test2, usd=1000, eur=2000, ltc=10, btc=20, created_by=test2)
 account.save()
-account = Account(user=test3, usd=1000, eur=2000, ltc=10, btc=20, created_by=test3)
+account = Account(user=test3, usd=1000, eur=60000, ltc=10, btc=20, created_by=test3)
 account.save()
 account = Account(user=admin, usd=1000, eur=2000, ltc=10, btc=20, created_by=admin)
 account.save()
@@ -35,11 +35,11 @@ from order.models import Order, ACTIVE, SELL, BTC, EUR, BUY
 
 order = Order(user=test1, order_type=SELL, what=BTC, amount=10, price=1000, trade_currency=EUR, status=ACTIVE, created_by=test1)
 order.save()
-order = Order(user=test1, order_type=SELL, what=BTC, amount=20, price=1500, trade_currency=EUR, status=ACTIVE, created_by=test1)
+order = Order(user=test2, order_type=SELL, what=BTC, amount=20, price=1500, trade_currency=EUR, status=ACTIVE, created_by=test1)
 order.save()
 order = Order(user=test1, order_type=SELL, what=BTC, amount=30, price=2000, trade_currency=EUR, status=ACTIVE, created_by=test1)
 order.save()
-order = Order(user=test2, order_type=BUY, what=BTC, amount=15, price=1540, trade_currency=EUR, status=ACTIVE, created_by=test2)
+order = Order(user=test3, order_type=BUY, what=BTC, amount=15, price=1540, trade_currency=EUR, status=ACTIVE, created_by=test2)
 order.save()
 
 from common.functions import try_limit_order
@@ -47,4 +47,3 @@ from order.models import Order
 
 order = Order.objects.get(id=3)
 try_limit_order(order)
-

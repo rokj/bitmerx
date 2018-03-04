@@ -1,7 +1,9 @@
+from decimal import Decimal
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 from django.shortcuts import render
 
-from order.models import Order
+from order.models import Order, ACTIVE
 
 from common.functions import try_limit_order
 
@@ -12,16 +14,18 @@ def index(request):
 
 
 @login_required
+@transaction.atomic
 def order(request):
     if request.method == 'POST':
         order = Order(
             user=request.user,
             order_type=request.POST['order_type'],
             what=request.POST['what'],
-            amount=request.POST['amount'],
-            price=request.POST['price'],
+            amount=Decimal(request.POST['amount']),
+            price=Decimal(request.POST['price']),
             trade_currency=request.POST['trade_currency'],
-            created_by=request.user
+            created_by=request.user,
+            status=ACTIVE
         )
         order.save()
 

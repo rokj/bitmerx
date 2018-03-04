@@ -1,39 +1,11 @@
+from decimal import Decimal
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from django.db import models
 
 from account.models import Account
+from common.constants import order_choices, what_choices, trade_currency_choices, status_choices, BTC, LTC, BUY, SELL, EUR, USD
 from common.models import SkeletonU
-
-BUY = 'buy'
-SELL = 'sell'
-ACTIVE = 'active'
-DONE = 'done'
-
-BTC = 'BTC'
-LTC = 'LTC'
-EUR = 'EUR'
-USD = 'USD'
-
-order_choices = (
-    (BUY, 'Buy'),
-    (SELL, 'Sell')
-)
-
-what_choices = (
-    (BTC, 'BTC'),
-    (LTC, 'LTC')
-)
-
-trade_currency_choices = (
-    (EUR, 'EUR'),
-    (USD, 'USD')
-)
-
-status_choices = (
-    (ACTIVE, 'Active'),
-    (DONE, 'Done')
-)
 
 
 class Order(SkeletonU):
