@@ -16,9 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import bitmerx.views as bitmerx_views
+import order.views as order_views
+import trade.views as trade_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', bitmerx_views.index, name='index'),
-    path('order/', bitmerx_views.order, name='order')
+    path('order/', order_views.order, name='order'),
+    path('my-orders/', order_views.my_orders, name='my-orders'),
+    path('my-trades/', trade_views.my_trades, name='my-trades'),
+    path('order-book/', order_views.order_book, name='order-book'),
 ]

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <table>
+        <tr>
+            <td>Trade Id</td>
+            <td>Order Id (order or candidate)</td>
+            <td>Amount</td>
+            <td>Price</td>
+            <td>Total</td>
+        </tr>
+        {% for t in trades %}
+            <tr>
+                <td>{{ t.id }}</td>
+                <td>{% if t.order.user == user %}{{ t.order.id }}{% elif t.candidate.user == user %}{{ t.candidate.id }}{% endif %}</td>
+                <td>{{ t.amount}}</td>
+                <td>{{ t.price }}</td>
+                <td>{{ t.total}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

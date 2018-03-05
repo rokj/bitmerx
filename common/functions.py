@@ -1,7 +1,10 @@
 from django.db.models import Q
 
 from account.models import Account
-from order.models import Order, BUY, ACTIVE, SELL, DONE, BTC, LTC, USD, EUR
+from order.models import Order
+
+from common.constants import BUY, ACTIVE, SELL, DONE, BTC, LTC, USD, EUR
+from trade.models import Trade
 
 
 def get_candidate(order):
@@ -28,7 +31,7 @@ def balance_accounts(order, candidate, initial_order_amount_completed, initial_c
     candidate_amount_completed = candidate.amount_completed - initial_candidate_amount_completed
 
     if order_amount_completed != candidate_amount_completed:
-        raise "Amounts should be the same!"
+        raise RuntimeError('Amounts should be the same!')
 
     # todo: check again for prices
     if order.what == BTC and order.order_type == BUY:
@@ -74,16 +77,14 @@ def balance_accounts(order, candidate, initial_order_amount_completed, initial_c
     account_candidate.save()
 
     trade = Trade(
-        order_type=order.order_type,
-        user1=order.user,
-        user2=candidate.user,
-        what=order.what,
-        trade_currency=order.trade_currency,
+        order=order,
+        candidate=candidate,
         amount=order_amount_completed,
         price=price,
         total=for_how_much
     )
     trade.save()
+
 
 def try_limit_order(order):
     candidate = get_candidate(order)
@@ -101,8 +102,8 @@ def try_limit_order(order):
             candidate.status = DONE
         elif amount_needed < amount_available:
             order.amount_completed = order.amount
-            order.status = DONE
             candidate.amount_completed = candidate.amount_completed + amount_needed
+            order.status = DONE
 
         if order.amount == order.amount_completed:
             order.status = DONE

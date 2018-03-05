@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<table>
+    <tr>
+        <td>Order id</td>
+        <td>Order type</td>
+        <td>What</td>
+        <td>Amount</td>
+        <td>Amount completed</td>
+        <td>Price</td>
+        <td>Trade currency</td>
+        <td>Status</td>
+    </tr>
+    {% for o in orders %}
+        <tr>
+            <td>{{ o.id }}</td>
+            <td>{{ o.order_type }}</td>
+            <td>{{ o.what }}</td>
+            <td>{{ o.amount}}</td>
+            <td>{{ o.amount_completed}}</td>
+            <td>{{ o.price }}</td>
+            <td>{{ o.trade_currency }}</td>
+            <td>{{ o.status }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

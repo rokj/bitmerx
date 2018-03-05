@@ -3,8 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style>
+        ul {
+            list-style-type: none;
+            display: inline-block;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        li {
+            display: inline;
+        }
+    </style>
+
+    <script>{% block script %}{% endblock %}</script>
 </head>
 <body>
+{% block header %}
+<ul>
+    <li><a href="{% url 'index' %}">Home</a> | </li>
+    <li><a href="{% url 'order' %}">Order</a> | </li>
+    <li><a href="{% url 'my-orders' %}">My orders</a> | </li>
+    <li><a href="{% url 'my-trades' %}">My trades</a> |</li>
+    <li><a href="{% url 'order-book' %}">Order book</a> || </li>
+    <li>USD: {{ account.usd }}$ | </li>
+    <li>EUR: {{ account.eur }}€ | </li>
+    <li>BTC: {{ account.btc }}BTC | </li>
+    <li>LTC: {{ account.ltc }}LTC</li>
+</ul>
+{% endblock %}
 {% block body %}{% endblock %}
 </body>
 </html>

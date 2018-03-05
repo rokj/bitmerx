@@ -14,7 +14,7 @@ class Order(SkeletonU):
     what = models.CharField(max_length=3, choices=what_choices, null=False, blank=False)
     amount = models.DecimalField(_('Amount'), max_digits=16, decimal_places=8, null=False, blank=False)
     amount_completed = models.DecimalField(_('Amount completed'), max_digits=16, decimal_places=8, null=False, blank=False, default=0)
-    price = models.DecimalField(_('Buy or sell at price'), max_digits=10, decimal_places=5, null=False, blank=False)
+    price = models.DecimalField(_('Buy or sell at price'), max_digits=10, decimal_places=4, null=False, blank=False)
     trade_currency = models.CharField(max_length=3, choices=trade_currency_choices, null=False, blank=False)
     status = models.CharField(max_length=6, choices=status_choices, null=False, blank=False, default='ACTIVE')
 

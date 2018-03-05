@@ -1,5 +1,24 @@
 {% extends 'base.html' %}
 
+{% block script %}
+$(document).ready(function() {
+    function total() {
+        var price = $("#price").val();
+        var amount = $("#amount").val();
+
+        if (price != "" && amount != "") {
+            price = Number(price);
+            amount = Number(amount);
+
+            $("#total").val(price*amount);
+        }
+    }
+
+    $("#price").on('keyup', total);
+    $("#amount").on('keyup', total);
+});
+{% endblock %}
+
 {% block body %}
 <form method="post">
     {% csrf_token %}
@@ -49,7 +68,7 @@
             <tr>
                 <td>Total</td>
                 <td>
-                    <input type="text" id="total" name="total" />
+                    <input type="text" id="total" name="total" placeholder="Approx. total" />
                 </td>
             </tr>
         </table>

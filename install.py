@@ -31,7 +31,8 @@ account.save()
 account = Account(user=admin, usd=1000, eur=2000, ltc=10, btc=20, created_by=admin)
 account.save()
 
-from order.models import Order, ACTIVE, SELL, BTC, EUR, BUY
+from order.models import Order
+from common.constants import ACTIVE, SELL, BTC, EUR, BUY
 
 order = Order(user=test1, order_type=SELL, what=BTC, amount=10, price=1000, trade_currency=EUR, status=ACTIVE, created_by=test1)
 order.save()
