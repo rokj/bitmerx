@@ -4,7 +4,7 @@ from order.models import Order
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in Order._meta.get_fields()]
+    list_display = ['user', 'order_type', 'what', 'amount', 'amount_completed', 'price', 'trade_currency', 'status']
 
 
 admin.site.register(Order, OrderAdmin)
