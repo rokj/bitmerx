@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path
 import bitmerx.views as bitmerx_views
 import order.views as order_views
@@ -26,4 +27,6 @@ urlpatterns = [
     path('my-orders/', order_views.my_orders, name='my-orders'),
     path('my-trades/', trade_views.my_trades, name='my-trades'),
     path('order-book/', order_views.order_book, name='order-book'),
+    path('accounts/login/', auth_views.login, name='login'),
+    path('accounts/logout/', auth_views.logout, name='logout'),
 ]

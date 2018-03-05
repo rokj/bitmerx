@@ -21,15 +21,17 @@ class Order(SkeletonU):
     def have_enough_funds(self):
         account = Account.objects.get(user=self.user)
 
+        amount_needed = self.amount-self.amount_completed
+
         if self.order_type == SELL:
-            if self.what == BTC and account.btc >= self.amount:
+            if self.what == BTC and account.btc >= amount_needed:
                 return True
-            elif self.what == LTC and account.ltc >= self.amount:
+            elif self.what == LTC and account.ltc >= amount_needed:
                 return True
         elif self.order_type == BUY:
-            if self.trade_currency == EUR and account.eur >= self.amount*self.price:
+            if self.trade_currency == EUR and account.eur >= amount_needed*self.price:
                 return True
-            elif self.trade_currency == USD and account.usd >= self.amount * self.price:
+            elif self.trade_currency == USD and account.usd >= amount_needed*self.price:
                 return True
 
         return False

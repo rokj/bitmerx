@@ -47,4 +47,4 @@ def order_book(request):
     account = Account.objects.get(user=request.user)
     orders = Order.objects.filter(status=ACTIVE)
 
-    return render(request, 'order-book.html', {'orders': orders, 'account': account})
+    return render(request, 'order-book.html', {'orders': orders, 'account': account, 'user': request.user})

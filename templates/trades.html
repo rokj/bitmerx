@@ -5,6 +5,9 @@
         <tr>
             <td>Trade Id</td>
             <td>Order Id (order or candidate)</td>
+            <td>Order type</td>
+            <td>What</td>
+            <td>Trade currency</td>
             <td>Amount</td>
             <td>Price</td>
             <td>Total</td>
@@ -13,8 +16,11 @@
             <tr>
                 <td>{{ t.id }}</td>
                 <td>{% if t.order.user == user %}{{ t.order.id }}{% elif t.candidate.user == user %}{{ t.candidate.id }}{% endif %}</td>
+                <td>{% if t.order.user == user %}{{ t.order.order_type }}{% elif t.candidate.user == user %}{{ t.candidate.order_type }}{% endif %}</td>
+                <td>{% if t.order.user == user %}{{ t.order.what }}{% elif t.candidate.user == user %}{{ t.candidate.what }}{% endif %}</td>
                 <td>{{ t.amount}}</td>
                 <td>{{ t.price }}</td>
+                <td>{% if t.order.user == user %}{{ t.order.trade_currency }}{% elif t.candidate.user == user %}{{ t.candidate.trade_currency }}{% endif %}</td>
                 <td>{{ t.total}}</td>
             </tr>
         {% endfor %}

@@ -13,7 +13,7 @@
         <td>Status</td>
     </tr>
     {% for o in orders %}
-        <tr>
+        <tr class="{% if o.user == user %}my-order{% endif %}">
             <td>{{ o.id }}</td>
             <td>{{ o.order_type }}</td>
             <td>{{ o.what }}</td>
